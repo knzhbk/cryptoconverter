@@ -8,23 +8,41 @@
 
 import UIKit
 
-class ConvertViewController: UIViewController {
-
+class ConvertViewController: UIViewController, UITextFieldDelegate {
+    var quote: Quote?
+    
+    @IBOutlet weak var fromCurrencyTextfield: UITextField!
+    @IBOutlet weak var selectToCurrencyButton: UIButton!
+    @IBOutlet weak var selectFromCurrencyButton: UIButton!
+    @IBOutlet weak var toCurrencyLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        fromCurrencyTextfield.delegate = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func convertButton(_ sender: UIButton) {
+        fromCurrencyTextfield.endEditing(true)
+        if let value = fromCurrencyTextfield.text {
+            print(value)
+        }
     }
-    */
-
+    
+    @IBAction func selectCurrency(_ sender: UIButton) {
+        fromCurrencyTextfield.endEditing(true)
+        if let url = URL(string: quote?.logo_url ?? "Error") {
+                   selectToCurrencyButton.imageView?.load(url: url)
+                   
+               }
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            return true
+        } else {
+            textField.placeholder = "Type something"
+            return false
+            
+        }
+    }
 }

@@ -16,11 +16,6 @@ class Converter {
     }
     
     func convert(amount: Double, convertQuote: Quote) -> Double {
-        return (amount*convertQuote.currentPrice)/baseQuote.currentPrice
-        
+        return (amount*convertQuote.price)/baseQuote.price
     }
-    
-    
-    
-
 }

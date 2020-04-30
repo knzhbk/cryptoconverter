@@ -9,24 +9,18 @@
 import Foundation
 
 struct Quote {
+    var id: String
+    var symbol: String
     var name: String
-    var currentPrice: Double
-    
-    static func createQuoteArray() -> Array<Quote> {
-//        let BTC = Quote(name: "BTC", currentPrice: 10000.00)
-//        let ETH = Quote(name: "ETH", currentPrice: 200.00)
-        let BTC = Quote(name: "BTC", currentPrice: Quote.randomPrice())
-        let ETH = Quote(name: "ETH", currentPrice: Quote.randomPrice())
-        let XRP = Quote(name: "XRP", currentPrice: Quote.randomPrice())
-        let BCH = Quote(name: "BCH", currentPrice: Quote.randomPrice())
-        let BCV = Quote(name: "BCV", currentPrice: Quote.randomPrice())
-        
-        let quoteArray = [BTC, ETH, XRP,BCH, BCV]
-
-        return quoteArray
-    }
-    
-    static func randomPrice() -> Double{
-        return Double.random(in: 0 ... 10000)
-    }
+    var logo_url: String
+    var rank: Int
+    var price: Double
+    var priceDate: String
+    var price_timestamp: String
+    var market_cap: String
+    var circulating_supply: String
+    var max_supply: String
+    var d: Dictionary<String, String>
+    var high: String
+    var high_stamp: String
 }
