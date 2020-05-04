@@ -19,8 +19,6 @@
 		C65B88212444F25C00F86D38 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B88202444F25C00F86D38 /* Quote.swift */; };
 		C65B88232445CAAC00F86D38 /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65B88222445CAAC00F86D38 /* Converter.swift */; };
 		C6C15F4F2455EB7300F6BF8E /* ConvertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C15F4E2455EB7300F6BF8E /* ConvertViewController.swift */; };
-		C6C15F532455FD8D00F6BF8E /* CurrencySelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C15F522455FD8D00F6BF8E /* CurrencySelectionTableViewController.swift */; };
-		C6C15F552455FE1C00F6BF8E /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C15F542455FE1C00F6BF8E /* CurrencyTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +36,6 @@
 		C65B88202444F25C00F86D38 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		C65B88222445CAAC00F86D38 /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		C6C15F4E2455EB7300F6BF8E /* ConvertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertViewController.swift; sourceTree = "<group>"; };
-		C6C15F522455FD8D00F6BF8E /* CurrencySelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionTableViewController.swift; sourceTree = "<group>"; };
-		C6C15F542455FE1C00F6BF8E /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				C61E9BA6244AFEB5009C6ACA /* QuotesTableViewController.swift */,
-				C6C15F522455FD8D00F6BF8E /* CurrencySelectionTableViewController.swift */,
 				C61E9BAA244B761B009C6ACA /* DetailViewController.swift */,
 				C6C15F4E2455EB7300F6BF8E /* ConvertViewController.swift */,
 			);
@@ -70,7 +65,6 @@
 				C65B88122444F1ED00F86D38 /* Main.storyboard */,
 				C65B88172444F1F200F86D38 /* LaunchScreen.storyboard */,
 				C61E9BA8244B5054009C6ACA /* QuoteTableViewCell.swift */,
-				C6C15F542455FE1C00F6BF8E /* CurrencyTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -189,9 +183,7 @@
 				C65B88212444F25C00F86D38 /* Quote.swift in Sources */,
 				C65B880D2444F1ED00F86D38 /* AppDelegate.swift in Sources */,
 				C61E9BA7244AFEB5009C6ACA /* QuotesTableViewController.swift in Sources */,
-				C6C15F532455FD8D00F6BF8E /* CurrencySelectionTableViewController.swift in Sources */,
 				C61E9BA9244B5054009C6ACA /* QuoteTableViewCell.swift in Sources */,
-				C6C15F552455FE1C00F6BF8E /* CurrencyTableViewCell.swift in Sources */,
 				C61E9BA32449AB0D009C6ACA /* QuoteProvider.swift in Sources */,
 				C6C15F4F2455EB7300F6BF8E /* ConvertViewController.swift in Sources */,
 				C65B880F2444F1ED00F86D38 /* SceneDelegate.swift in Sources */,

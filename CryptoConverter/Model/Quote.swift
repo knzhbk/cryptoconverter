@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Quote {
+struct Quote: Decodable {
     var id: String
     var symbol: String
     var name: String

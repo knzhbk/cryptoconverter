@@ -16,7 +16,7 @@ class QuotesTableViewController: UITableViewController {
         
         NotificationCenter.default.addObserver(self ,
                                                selector: #selector(reciveNotification),
-                                               name: NOTIFICATION_SEND_NAME,
+                                               name: QUOTES_SENT_NOTIFICATION,
                                                object: nil)
     }
     
@@ -25,6 +25,14 @@ class QuotesTableViewController: UITableViewController {
         tableView!.reloadData()
     }
     
+    override func viewDidLoad() {
+        requestQuotes()
+    }
+    
+    func requestQuotes() {
+        NotificationCenter.default.post(name: QUOTES_REQUESTED_NOTIFICATION, object: nil)
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

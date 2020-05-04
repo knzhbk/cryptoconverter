@@ -19,21 +19,19 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         fromCurrencyTextfield.delegate = self
+        
     }
     
     @IBAction func convertButton(_ sender: UIButton) {
         fromCurrencyTextfield.endEditing(true)
         if let value = fromCurrencyTextfield.text {
             print(value)
+          
         }
     }
     
     @IBAction func selectCurrency(_ sender: UIButton) {
         fromCurrencyTextfield.endEditing(true)
-        if let url = URL(string: quote?.logo_url ?? "Error") {
-                   selectToCurrencyButton.imageView?.load(url: url)
-                   
-               }
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {

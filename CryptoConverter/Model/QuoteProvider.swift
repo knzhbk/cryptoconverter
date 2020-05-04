@@ -8,7 +8,8 @@
 
 import Foundation
 
-let NOTIFICATION_SEND_NAME = NSNotification.Name("notification_data")
+let QUOTES_SENT_NOTIFICATION = NSNotification.Name("QUOTES_SENT")
+let QUOTES_REQUESTED_NOTIFICATION = NSNotification.Name("QUOTES_REQUESTED")
 let TIME_INTERVAL_MIN = 5 * 60.0
 
 class QuoteProvider {
@@ -16,6 +17,11 @@ class QuoteProvider {
     var quotes: [Quote] = []
     
     func start() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(sendQuoteArray),
+                                               name: QUOTES_REQUESTED_NOTIFICATION,
+                                               object: nil)
+
         updateQuotes()
 
         timer = Timer.scheduledTimer(
@@ -27,7 +33,11 @@ class QuoteProvider {
     
     func updateQuotes() {
         quotes = self.createQuoteArray()
-        NotificationCenter.default.post(name: NOTIFICATION_SEND_NAME, object: quotes)
+        sendQuoteArray()
+    }
+    
+    @objc func sendQuoteArray() {
+        NotificationCenter.default.post(name: QUOTES_SENT_NOTIFICATION, object: quotes)
     }
     
     func stop() {
