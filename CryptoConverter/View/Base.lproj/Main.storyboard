@@ -163,7 +163,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYD-F9-tzV">
-                                <rect key="frame" x="100" y="49.333333333333343" width="38.333333333333343" height="20.333333333333336"/>
+                                <rect key="frame" x="100" y="49.333333333333336" width="38.333333333333343" height="20.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -315,7 +315,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="square.and.arrow.up.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="selectCurrency:" destination="40i-AV-KpO" eventType="touchUpInside" id="jSl-TV-1pz"/>
+                                    <action selector="selectFromCurrencyButtonPressed:" destination="40i-AV-KpO" eventType="touchUpInside" id="D9e-vW-ERy"/>
                                     <segue destination="D42-1g-Eh6" kind="presentation" id="m4v-Ey-UmB"/>
                                 </connections>
                             </button>
@@ -327,7 +327,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="square.and.arrow.up.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="selectCurrency:" destination="40i-AV-KpO" eventType="touchUpInside" id="ptw-GH-ZTy"/>
+                                    <action selector="selectToCurrencyButtonPressed:" destination="40i-AV-KpO" eventType="touchUpInside" id="4nr-JZ-jc5"/>
                                     <segue destination="D42-1g-Eh6" kind="presentation" id="qTa-wa-HS0"/>
                                 </connections>
                             </button>
@@ -349,6 +349,8 @@
                     <navigationItem key="navigationItem" id="yAE-NA-cTz"/>
                     <connections>
                         <outlet property="fromCurrencyTextfield" destination="6qc-g1-dGj" id="ulZ-1v-my5"/>
+                        <outlet property="selectFromCurrencyButton" destination="p9g-vr-Ss8" id="17A-L1-Kz1"/>
+                        <outlet property="selectToCurrencyButton" destination="eAq-dN-caC" id="aCt-ln-Cge"/>
                         <outlet property="toCurrencyLabel" destination="vMd-kL-ufW" id="Zhn-U6-RFC"/>
                     </connections>
                 </viewController>

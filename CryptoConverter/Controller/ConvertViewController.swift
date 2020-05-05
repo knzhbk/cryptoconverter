@@ -9,29 +9,57 @@
 import UIKit
 
 class ConvertViewController: UIViewController, UITextFieldDelegate {
-    var quote: Quote?
-    
+    var fromQuote: Quote?
+    var converter = Converter()
+    var toQuote: Quote?
+    var isToCurrencyButtonClicked = 0
     @IBOutlet weak var fromCurrencyTextfield: UITextField!
     @IBOutlet weak var selectToCurrencyButton: UIButton!
     @IBOutlet weak var selectFromCurrencyButton: UIButton!
     @IBOutlet weak var toCurrencyLabel: UILabel!
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        NotificationCenter.default.addObserver(self ,
+                                               selector: #selector(receiveSelectedQuotesNotification),
+                                               name: .selectedQuoteRequestedNotification,
+                                               object: nil)
+    }
+    
+    @objc func receiveSelectedQuotesNotification(notification: Notification) {
+        if let receivedQuote = notification.object as? Quote {
+            print("Selected quote:\(receivedQuote.name)")
+            if isToCurrencyButtonClicked == 1 {
+                fromQuote = receivedQuote
+//                if let url = URL(string: fromQuote!.logo_url) {selectFromCurrencyButton.imageView!.load(url: url)}
+            } else {
+                toQuote = receivedQuote
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fromCurrencyTextfield.delegate = self
-        
     }
     
     @IBAction func convertButton(_ sender: UIButton) {
         fromCurrencyTextfield.endEditing(true)
         if let value = fromCurrencyTextfield.text {
-            print(value)
-          
+            let amount = Double(value)!
+            if fromQuote != nil, toQuote != nil {
+                let currencyRate = converter.convert(baseQuote: fromQuote!, convertQuote: toQuote!, amount: amount)
+                toCurrencyLabel.text = String(format: "%.2f", currencyRate)
+            }
         }
     }
     
-    @IBAction func selectCurrency(_ sender: UIButton) {
-        fromCurrencyTextfield.endEditing(true)
+    @IBAction func selectFromCurrencyButtonPressed(_ sender: UIButton) {
+        isToCurrencyButtonClicked = 1
+    }
+    
+    @IBAction func selectToCurrencyButtonPressed(_ sender: UIButton) {
+        isToCurrencyButtonClicked = 2
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -40,7 +68,12 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
         } else {
             textField.placeholder = "Type something"
             return false
-            
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? QuotesTableViewController {
+            destination.isSelectQuoteMode = true
         }
     }
 }

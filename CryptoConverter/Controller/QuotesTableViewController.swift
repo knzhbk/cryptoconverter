@@ -10,17 +10,18 @@ import UIKit
 
 class QuotesTableViewController: UITableViewController {
     var dataArray: [Quote] = []
+    var isSelectQuoteMode = false
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         NotificationCenter.default.addObserver(self ,
-                                               selector: #selector(reciveNotification),
-                                               name: QUOTES_SENT_NOTIFICATION,
+                                               selector: #selector(reciveQuotesNotification),
+                                               name: .quotesSentNotification,
                                                object: nil)
     }
     
-    @objc func reciveNotification(notification: Notification) {
+    @objc func reciveQuotesNotification(notification: Notification) {
         dataArray = notification.object as! [Quote]
         tableView!.reloadData()
     }
@@ -30,9 +31,9 @@ class QuotesTableViewController: UITableViewController {
     }
     
     func requestQuotes() {
-        NotificationCenter.default.post(name: QUOTES_REQUESTED_NOTIFICATION, object: nil)
+        NotificationCenter.default.post(name: .quotesRequestedNotification, object: nil)
     }
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -60,11 +61,20 @@ class QuotesTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let quote = dataArray[indexPath.row]
+        NotificationCenter.default.post(name: .selectedQuoteRequestedNotification, object: quote)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 180.0
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if isSelectQuoteMode == true {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
         if let destination = segue.destination as? DetailViewController,
             let cell = sender as? QuoteTableViewCell,
             let indexPath = tableView.indexPath(for: cell) {

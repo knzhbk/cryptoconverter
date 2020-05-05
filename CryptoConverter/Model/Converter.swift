@@ -9,13 +9,8 @@
 import Foundation
 
 class Converter {
-    var baseQuote: Quote
     
-    init(baseQuote: Quote) {
-        self.baseQuote = baseQuote
-    }
-    
-    func convert(amount: Double, convertQuote: Quote) -> Double {
+    func convert(baseQuote: Quote, convertQuote: Quote, amount: Double) -> Double {
         return (amount*convertQuote.price)/baseQuote.price
     }
 }
