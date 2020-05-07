@@ -36,7 +36,6 @@ class QuoteProvider {
     
     @objc func sendQuoteArray() {
         NotificationCenter.default.post(name: .quotesSentNotification, object: requestedQuotes)
-        print(requestedQuotes)
     }
     
     func stop() {
@@ -67,7 +66,6 @@ class QuoteProvider {
                         self.requestedQuotes = try JSONDecoder().decode([Quote].self, from: data)
                         DispatchQueue.main.async {
                             self.sendQuoteArray()
-                            print(self.requestedQuotes)
                         }
                     }
                     catch {

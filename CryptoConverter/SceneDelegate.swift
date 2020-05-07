@@ -18,6 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         quoteProvider = QuoteProvider()
         quoteProvider?.start()
         
+        let isFirstLaunch = UserDefaults.standard.bool(forKey: "isFirstLaunch")
+        if isFirstLaunch  {
+            print("It is a first launch.")
+        } else {
+            print("Not first launch.")
+            UserDefaults.standard.set(false, forKey: "isFirstLaunch")
+        }
+        
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
