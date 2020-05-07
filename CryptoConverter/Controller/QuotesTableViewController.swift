@@ -51,7 +51,7 @@ class QuotesTableViewController: UITableViewController {
         cell.name.text = quote.name
         cell.rank.text = "\(quote.rank)"
         cell.price.text = "\(quote.price)"
-        cell.price_date.text = "\(quote.priceDate)"
+        cell.price_date.text = "\(quote.price_date)"
         cell.price_stamp.text = "\(quote.price_timestamp)"
         cell.market_cap.text = quote.market_cap
         cell.max_supply.text = quote.max_supply
