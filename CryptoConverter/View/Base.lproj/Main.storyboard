@@ -163,7 +163,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYD-F9-tzV">
-                                <rect key="frame" x="100" y="49.333333333333343" width="38.333333333333343" height="20.333333333333336"/>
+                                <rect key="frame" x="100" y="49.333333333333336" width="38.333333333333343" height="20.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -307,7 +307,7 @@
                                     <constraint firstAttribute="width" constant="65" id="GcX-eK-BSS"/>
                                     <constraint firstAttribute="height" constant="65" id="Raw-87-ZRR"/>
                                 </constraints>
-                                <state key="normal" image="photo" catalog="system"/>
+                                <state key="normal" image="placeholder_currency"/>
                                 <connections>
                                     <action selector="selectFromCurrencyButtonPressed:" destination="40i-AV-KpO" eventType="touchUpInside" id="D9e-vW-ERy"/>
                                     <segue destination="D42-1g-Eh6" kind="presentation" id="m4v-Ey-UmB"/>
@@ -319,7 +319,7 @@
                                     <constraint firstAttribute="height" constant="65" id="vAq-G9-2Dy"/>
                                     <constraint firstAttribute="width" constant="65" id="xIS-d1-RtQ"/>
                                 </constraints>
-                                <state key="normal" image="photo" catalog="system"/>
+                                <state key="normal" image="placeholder_currency"/>
                                 <connections>
                                     <action selector="selectToCurrencyButtonPressed:" destination="40i-AV-KpO" eventType="touchUpInside" id="4nr-JZ-jc5"/>
                                     <segue destination="D42-1g-Eh6" kind="presentation" id="qTa-wa-HS0"/>
@@ -469,7 +469,7 @@
         <image name="ios" width="1200" height="800"/>
         <image name="list.bullet.below.rectangle" catalog="system" width="64" height="56"/>
         <image name="list.dash" catalog="system" width="64" height="42"/>
-        <image name="photo" catalog="system" width="64" height="46"/>
+        <image name="placeholder_currency" width="422" height="422"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="m4v-Ey-UmB"/>

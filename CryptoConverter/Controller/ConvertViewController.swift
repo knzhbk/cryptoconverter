@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import  SDWebImage
 
 class ConvertViewController: UIViewController, UITextFieldDelegate {
     var fromQuote: Quote?
@@ -33,15 +34,18 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
                 fromQuote = receivedQuote
                 if let fromQuote = fromQuote {
                     selectFromCurrencyButton.imageView!.sd_setImage(with: URL(string: fromQuote
-                        .logo_url), placeholderImage: #imageLiteral(resourceName: "placeholder_currency"))
+                        .logo_url))
+                    print("Logo url: \(fromQuote.logo_url)")
                     selectFromCurrencyButton.imageView!.sd_imageTransition = .flipFromTop
                 }
-            } else {
+            } else if isToCurrencyButtonClicked == 2 {
                 toQuote = receivedQuote
                 if let toQuote = toQuote {
-                    selectFromCurrencyButton.imageView!.sd_setImage(with: URL(string: toQuote
-                        .logo_url), placeholderImage: #imageLiteral(resourceName: "placeholder_currency"))
-                    selectFromCurrencyButton.imageView!.sd_imageTransition = .flipFromTop
+                    selectFromCurrencyButton.imageView?.sd_setImage(with: URL(string: toQuote
+                        .logo_url))
+                    selectToCurrencyButton.imageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
+
+                    selectFromCurrencyButton.imageView?.sd_imageTransition = .flipFromTop
                 }
             }
         }
