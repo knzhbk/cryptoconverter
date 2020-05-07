@@ -31,7 +31,7 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
             print("Selected quote:\(receivedQuote.name)")
             if isToCurrencyButtonClicked == 1 {
                 fromQuote = receivedQuote
-//                if let url = URL(string: fromQuote!.logo_url) {selectFromCurrencyButton.imageView!.load(url: url)}
+                if let url = URL(string: fromQuote!.logo_url) {selectFromCurrencyButton.imageView!.load(url: url)}
             } else {
                 toQuote = receivedQuote
             }
