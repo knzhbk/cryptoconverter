@@ -45,7 +45,13 @@ class QuoteProvider {
     }
     
     func getQuotesArray() -> [Quote] {
-        let quoteAdress = "https://api.nomics.com/v1/currencies/ticker?key=3c8c0907276523d0ff0e94c50657de0c&format=json&interval=5m&convert=USD"
+        let baseUrl = "https://api.nomics.com/v1/currencies/ticker"
+        let apiKey = "key=3c8c0907276523d0ff0e94c50657de0c"
+        let format = "format=json"
+        let timeInterval = "interval=5m"
+        let currency = "convert=USD"
+
+        let quoteAdress = "\(baseUrl)?\(apiKey)&\(format)&\(timeInterval)&\(currency)"
         
         
         if let url = URL(string: quoteAdress) {
@@ -68,11 +74,9 @@ class QuoteProvider {
                         print("Decoding JSON failure: \(error)")
                     }
                 }
-                
             }
             quoteLoadTask.resume()
         }
-        
         return requestedQuotes
     }
 }

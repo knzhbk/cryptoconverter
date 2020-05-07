@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+import SDWebImageSVGCoder
 
 class QuotesTableViewController: UITableViewController {
     var dataArray: [Quote] = []
@@ -46,6 +48,9 @@ class QuotesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "quoteCell", for: indexPath) as! QuoteTableViewCell
         let quote = dataArray[indexPath.row]
         
+        let SVGCoder = SDImageSVGCoder.shared
+        SDImageCodersManager.shared.addCoder(SVGCoder)
+        
         cell.symbol.text = quote.symbol
         print("Value symbol: \(quote.symbol)")
         cell.name.text = quote.name
@@ -56,7 +61,9 @@ class QuotesTableViewController: UITableViewController {
         cell.market_cap.text = quote.market_cap
         cell.max_supply.text = quote.max_supply
         cell.circulating_supply.text = quote.circulating_supply
-        if let url = URL(string: quote.logo_url) {cell.logo.load(url: url)}
+//        if let url = URL(string: quote.logo_url) {cell.logo.load(url: url)}
+        cell.logo.sd_setImage(with: URL(string: quote.logo_url), placeholderImage: #imageLiteral(resourceName: "placeholder_currency"))
+        cell.logo.sd_imageTransition = .flipFromTop
         
         return cell
     }
@@ -80,20 +87,6 @@ class QuotesTableViewController: UITableViewController {
             let indexPath = tableView.indexPath(for: cell) {
             let quote = dataArray[indexPath.row]
             destination.quote = quote
-        }
-    }
-}
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
         }
     }
 }
