@@ -7,20 +7,21 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Quote: Decodable {
-    var id: String
-    var currency: String
-    var symbol: String
-    var name: String
-    var logo_url: String
-    var rank: String
-    var price: String
-    var price_date: String
-    var price_timestamp: String
-    var market_cap: String?
-    var circulating_supply: String?
-    var max_supply: String?
-    var high: String?
-    var high_timestamp: String?
+class Quote: Object, Decodable {
+    @objc dynamic var id: String
+    @objc dynamic var currency: String
+    @objc dynamic var symbol: String
+    @objc dynamic var name: String
+    @objc dynamic var logo_url: String
+    @objc dynamic var rank: String
+    @objc dynamic var price: String
+    @objc dynamic var price_date: String
+    @objc dynamic var price_timestamp: String
+    @objc dynamic var market_cap: String?
+    @objc dynamic var circulating_supply: String?
+    @objc dynamic var max_supply: String?
+    @objc dynamic var high: String?
+    @objc dynamic var high_timestamp: String?
 }

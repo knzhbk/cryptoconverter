@@ -23,7 +23,7 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
         super.init(coder: coder)
         NotificationCenter.default.addObserver(self ,
                                                selector: #selector(receiveSelectedQuotesNotification),
-                                               name: .selectedQuoteRequestedNotification,
+                                               name: .selectedQuoteSentNotification,
                                                object: nil)
     }
     

@@ -30,8 +30,8 @@ class DetailViewController: UIViewController {
             max_supply.text = "Max supply: \(quote.max_supply ?? "Not provided")"
             detailLogo.sd_setImage(with: URL(string: quote.logo_url), placeholderImage: #imageLiteral(resourceName: "placeholder_currency"))
             detailLogo.sd_imageTransition = .flipFromTop
-            highTimestamp.text = "High timestamp: \(quote.high_timestamp)"
-            high.text = "High: \(quote.high)"
+            highTimestamp.text = "High timestamp: \(quote.high_timestamp ?? "Not provided")"
+            high.text = "High: \(quote.high ?? "Not provided")"
             circulatingSupply.text = "Circ supply: \(quote.circulating_supply ?? "Not provided")"
             priceTimestamp.text = "Price timestamp: \(quote.price_timestamp)"
             priceDate.text = "Price date: \(quote.price_date)"

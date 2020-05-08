@@ -18,12 +18,12 @@ class QuotesTableViewController: UITableViewController {
         super.init(coder: coder)
         
         NotificationCenter.default.addObserver(self ,
-                                               selector: #selector(reciveQuotesNotification),
+                                               selector: #selector(receiveQuotesNotification),
                                                name: .quotesSentNotification,
                                                object: nil)
     }
     
-    @objc func reciveQuotesNotification(notification: Notification) {
+    @objc func receiveQuotesNotification(notification: Notification) {
         dataArray = notification.object as! [Quote]
         tableView!.reloadData()
     }
@@ -70,7 +70,7 @@ class QuotesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let quote = dataArray[indexPath.row]
-        NotificationCenter.default.post(name: .selectedQuoteRequestedNotification, object: quote)
+        NotificationCenter.default.post(name: .selectedQuoteSentNotification, object: quote)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
