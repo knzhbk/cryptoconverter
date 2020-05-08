@@ -29,6 +29,7 @@ class QuotesTableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
+        self.title = "Quotes"
         requestQuotes()
     }
     

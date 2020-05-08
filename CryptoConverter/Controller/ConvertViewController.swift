@@ -52,6 +52,7 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         fromCurrencyTextfield.delegate = self
         fromCurrencyTextfield.placeholder = "Enter amount"
+        self.title = "Converter"
         
         let fromCurrencyTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fromCurrencyImageViewTapped(tapGestureRecognizer:)))
         fromCurrencyImageView.isUserInteractionEnabled = true
