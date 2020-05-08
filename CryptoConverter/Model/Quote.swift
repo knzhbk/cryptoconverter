@@ -21,6 +21,6 @@ struct Quote: Decodable {
     var market_cap: String?
     var circulating_supply: String?
     var max_supply: String?
-    var high: String
-    var high_timestamp: String
+    var high: String?
+    var high_timestamp: String?
 }

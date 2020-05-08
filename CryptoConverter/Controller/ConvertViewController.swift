@@ -13,10 +13,10 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
     var fromQuote: Quote?
     var converter = Converter()
     var toQuote: Quote?
+    @IBOutlet weak var fromCurrencyImageView: UIImageView!
+        @IBOutlet weak var toCurrencyImageView: UIImageView!
     var isToCurrencyButtonClicked = 0
     @IBOutlet weak var fromCurrencyTextfield: UITextField!
-    @IBOutlet weak var selectToCurrencyButton: UIButton!
-    @IBOutlet weak var selectFromCurrencyButton: UIButton!
     @IBOutlet weak var toCurrencyLabel: UILabel!
     
     required init?(coder: NSCoder) {
@@ -33,19 +33,16 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
             if isToCurrencyButtonClicked == 1 {
                 fromQuote = receivedQuote
                 if let fromQuote = fromQuote {
-                    selectFromCurrencyButton.imageView!.sd_setImage(with: URL(string: fromQuote
+                    fromCurrencyImageView.sd_setImage(with: URL(string: fromQuote
                         .logo_url))
-                    print("Logo url: \(fromQuote.logo_url)")
-                    selectFromCurrencyButton.imageView!.sd_imageTransition = .flipFromTop
+                    fromCurrencyImageView.sd_imageTransition = .flipFromTop
                 }
             } else if isToCurrencyButtonClicked == 2 {
                 toQuote = receivedQuote
                 if let toQuote = toQuote {
-                    selectFromCurrencyButton.imageView?.sd_setImage(with: URL(string: toQuote
+                    toCurrencyImageView.sd_setImage(with: URL(string: toQuote
                         .logo_url))
-                    selectToCurrencyButton.imageView?.sd_imageIndicator = SDWebImageActivityIndicator.gray
-
-                    selectFromCurrencyButton.imageView?.sd_imageTransition = .flipFromTop
+                    toCurrencyImageView.sd_imageTransition = .flipFromTop
                 }
             }
         }
@@ -54,25 +51,47 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         fromCurrencyTextfield.delegate = self
+        fromCurrencyTextfield.placeholder = "Enter amount"
+        
+        let fromCurrencyTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(fromCurrencyImageViewTapped(tapGestureRecognizer:)))
+        fromCurrencyImageView.isUserInteractionEnabled = true
+        fromCurrencyImageView.addGestureRecognizer(fromCurrencyTapGestureRecognizer)
+        
+        let toCurrencyTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toCurrencyImageViewTapped(tapGestureRecognizer:)))
+        toCurrencyImageView.isUserInteractionEnabled = true
+        toCurrencyImageView.addGestureRecognizer(toCurrencyTapGestureRecognizer)
+    }
+    
+    @objc func fromCurrencyImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "QuotesTableViewController") as! QuotesTableViewController
+        vc.isSelectQuoteMode = true
+        let navController = UINavigationController(rootViewController: vc)
+        self.present(navController, animated:true, completion: nil)
+        isToCurrencyButtonClicked = 1
+    }
+    
+    @objc func toCurrencyImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        let vc = self.storyboard!.instantiateViewController(withIdentifier: "QuotesTableViewController") as! QuotesTableViewController
+        vc.isSelectQuoteMode = true
+        let navController = UINavigationController(rootViewController: vc)
+        self.present(navController, animated:true, completion: nil)
+        isToCurrencyButtonClicked = 2
     }
     
     @IBAction func convertButton(_ sender: UIButton) {
         fromCurrencyTextfield.endEditing(true)
-        if let value = fromCurrencyTextfield.text {
-            let amount = Double(value)!
-            if fromQuote != nil, toQuote != nil {
-                let currencyRate = converter.convert(baseQuote: fromQuote!, convertQuote: toQuote!, amount: amount)
-                toCurrencyLabel.text = String(format: "%.2f", currencyRate)
+        if fromCurrencyTextfield.text != "" {
+            if let value = fromCurrencyTextfield.text {
+                let amount = Double(value)!
+                if fromQuote != nil, toQuote != nil {
+                    let currencyRate = converter.convert(baseQuote: fromQuote!, convertQuote: toQuote!, amount: amount)
+                    toCurrencyLabel.text = String(format: "%.2f", currencyRate)
+                }
             }
+        } else {
+            fromCurrencyTextfield.endEditing(true)
+            fromCurrencyTextfield.placeholder = "Enter amount"
         }
-    }
-    
-    @IBAction func selectFromCurrencyButtonPressed(_ sender: UIButton) {
-        isToCurrencyButtonClicked = 1
-    }
-    
-    @IBAction func selectToCurrencyButtonPressed(_ sender: UIButton) {
-        isToCurrencyButtonClicked = 2
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -84,9 +103,10 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? QuotesTableViewController {
-            destination.isSelectQuoteMode = true
-        }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+      let allowedCharacters = CharacterSet.decimalDigits
+      let characterSet = CharacterSet(charactersIn: string)
+      return allowedCharacters.isSuperset(of: characterSet)
     }
 }
