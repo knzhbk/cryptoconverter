@@ -408,7 +408,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B366A3F1F3C20415DD26AAD1 /* Pods-CryptoConverter.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CryptoConverter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -426,7 +426,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B139607051AAD6BE1C438804 /* Pods-CryptoConverter.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CryptoConverter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

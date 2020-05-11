@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "launch_screen_background.jpg",
       "scale" : "1x"
     },
     {
