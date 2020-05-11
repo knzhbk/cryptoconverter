@@ -61,6 +61,8 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
         let toCurrencyTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(toCurrencyImageViewTapped(tapGestureRecognizer:)))
         toCurrencyImageView.isUserInteractionEnabled = true
         toCurrencyImageView.addGestureRecognizer(toCurrencyTapGestureRecognizer)
+        
+        fromCurrencyTextfield.addTarget(self, action: #selector(convertQuote), for: .editingChanged)
     }
     
     @objc func fromCurrencyImageViewTapped(tapGestureRecognizer: UITapGestureRecognizer) {
@@ -80,19 +82,7 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func convertButton(_ sender: UIButton) {
-        fromCurrencyTextfield.endEditing(true)
-        if fromCurrencyTextfield.text != "" {
-            if let value = fromCurrencyTextfield.text {
-                let amount = Double(value)!
-                if fromQuote != nil, toQuote != nil {
-                    let currencyRate = converter.convert(baseQuote: fromQuote!, convertQuote: toQuote!, amount: amount)
-                    toCurrencyLabel.text = String(format: "%.2f", currencyRate)
-                }
-            }
-        } else {
-            fromCurrencyTextfield.endEditing(true)
-            fromCurrencyTextfield.placeholder = "Enter amount"
-        }
+        convertQuote()
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -109,5 +99,20 @@ class ConvertViewController: UIViewController, UITextFieldDelegate {
       let allowedCharacters = CharacterSet.decimalDigits
       let characterSet = CharacterSet(charactersIn: string)
       return allowedCharacters.isSuperset(of: characterSet)
+    }
+    
+    @objc func convertQuote() {
+        if fromCurrencyTextfield.text != "" {
+            if let value = fromCurrencyTextfield.text {
+                let amount = Double(value)!
+                if fromQuote != nil, toQuote != nil {
+                    let currencyRate = converter.convert(baseQuote: fromQuote!, convertQuote: toQuote!, amount: amount)
+                    toCurrencyLabel.text = String(format: "%.2f", currencyRate)
+                }
+            }
+        } else {
+            fromCurrencyTextfield.endEditing(true)
+            fromCurrencyTextfield.placeholder = "Enter amount"
+        }
     }
 }

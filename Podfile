@@ -4,11 +4,11 @@
 target 'CryptoConverter' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+
+  # Pods for CryptoConverter
   
   pod 'SDWebImage', '~> 5.7'
   pod 'SDWebImageSVGCoder'
   pod 'RealmSwift'
-  
-  # Pods for CryptoConverter
-  
+
 end
